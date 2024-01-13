@@ -133,7 +133,7 @@
 		@media screen and (max-width: 736px) {
 
 			body {
-				padding: 5em 2em 2em 2em;
+				padding: 1em 2em 2em 2em;
 			}
 
 		}
@@ -141,7 +141,7 @@
 		@media screen and (max-width: 360px) {
 
 			body {
-				padding: 5em 1.25em 1.25em 1.25em;
+				padding: 0 1.25em 1.25em 1.25em;
 			}
 
 		}
@@ -965,6 +965,8 @@
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
+		position: absolute;
+		bottom: 0;
 	}
 
 		input[type="submit"]:hover,
@@ -1003,6 +1005,7 @@
 			button,
 			.button {
 				padding: 0;
+				position: inherit;
 			}
 
 		}
@@ -1045,7 +1048,7 @@
 
 /* Signup Form */
 
-	#signup-form {
+	#signup-form section {
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -1053,23 +1056,32 @@
 		position: relative;
 	}
 
+	#signup-form div {
+		width: 18em;
+	}
+
 		#signup-form input[type="text"],
 		#signup-form input[type="password"],
-		#signup-form input[type="email"] {
-			width: 18em;
+		#signup-form input[type="email"], 
+		#signup-form textarea {
+			width: 100%;
 		}
 
-		#signup-form > * {
-			margin: 0 0 0 1em;
-		}
+		#signup-form > section > div {
+			margin: 0 0 0 1em; }
 
-		#signup-form > :first-child {
-			margin: 0 0 0 0;
-		}
+		#signup-form > section > div:first-child {
+			margin: 0 0 0 0; }
+
+		#signup-form section {
+			margin: 0.5em 0 0 0; }
+
+		#signup-form section:first-child {
+			margin: 0 0 0 0; }
 
 		@media screen and (max-width: 480px) {
 
-			#signup-form {
+			#signup-form section {
 				-moz-flex-direction: column;
 				-webkit-flex-direction: column;
 				-ms-flex-direction: column;
@@ -1078,9 +1090,18 @@
 
 				#signup-form input[type="text"],
 				#signup-form input[type="password"],
-				#signup-form input[type="email"] {
+				#signup-form input[type="email"],
+				#signup-form input[type="submit"],
+				#signup-form textarea,
+				#signup-form section,
+				#signup-form > section > div {
 					width: 100%;
 				}
+
+				#signup-form > section > div {
+					margin: 0.5em 0 0 0;
+				}
+
 
 				#signup-form > * {
 					margin: 1.25em 0 0 0;

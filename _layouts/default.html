@@ -16,8 +16,22 @@
 
 <!-- Signup Form -->
 <form id="signup-form" method="post" action="#">
-	<input type="email" name="email" id="email" placeholder="Email Address" />
-	<input type="submit" value="Sign Up" />
+	<section>
+		<div>
+			<input type="text" name="name" id="name" placeholder="Name" />
+		</div>
+		<div>
+			<input type="email" name="email" id="email" placeholder="Email Address" />
+		</div>
+	</section>
+	<section>
+		<div>
+			<textarea name="message" id="message" placeholder="Message" /></textarea>
+		</div>
+		<div>
+			<input type="submit" value="Send" />
+		</div>
+	</section>
 </form>
 
 {% include footer.html %}
