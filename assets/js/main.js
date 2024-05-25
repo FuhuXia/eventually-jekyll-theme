@@ -124,6 +124,7 @@
 				$message._show = function(type, text) {
 
 					$message.innerHTML = text;
+					$message.classList.remove(type==='success'? 'failure': 'success');
 					$message.classList.add(type);
 					$message.classList.add('visible');
 
