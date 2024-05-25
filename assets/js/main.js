@@ -149,7 +149,7 @@
 
 					// check name/email/message values not all empty
 					if ($form.name.value == '' && $form.email.value == '' && $form.message.value == '') {
-						$message._show('failure', 'Missing values.');
+						$message._show('failure', 'Huh?');
 						return;
 					}
 
