@@ -39,6 +39,7 @@
 
 					// Images (in the format of 'url': 'alignment').
 						images: {
+							'assets/images/bg_zion.jpg': 'center',
 							'assets/images/bg_lake.louise.jpg': 'center',
 							'assets/images/bg_morants.curve.jpg': 'center',
 							'assets/images/bg_lake.ohara_3.jpg': 'center',
