@@ -39,9 +39,11 @@
 
 					// Images (in the format of 'url': 'alignment').
 						images: {
-							'assets/images/bg01.jpg': 'center',
-							'assets/images/bg02.jpg': 'center',
-							'assets/images/bg03.jpg': 'center'
+							'assets/images/bg_lake.louise.jpg': 'center',
+							'assets/images/bg_morants.curve.jpg': 'center',
+							'assets/images/bg_lake.ohara_3.jpg': 'center',
+							'assets/images/bg_lake.ohara_e.jpg': 'center',
+							'assets/images/bg_lake.ohara_j.jpg': 'center'
 						},
 
 					// Delay.
@@ -145,6 +147,30 @@
 					event.stopPropagation();
 					event.preventDefault();
 
+					// check name/email/message values not all empty
+					if ($form.name.value == '' && $form.email.value == '' && $form.message.value == '') {
+						$message._show('failure', 'Missing values.');
+						return;
+					}
+
+					//submit the form
+					var formData = new FormData($form);
+					var xhr = new XMLHttpRequest();
+					xhr.open('POST', $form.getAttribute('action'), true);
+					xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+					xhr.setRequestHeader('Content-Type', 'multipart/form-data; charset=UTF-8');
+
+					xhr.onreadystatechange = function () {
+						if (xhr.readyState !== XMLHttpRequest.DONE) return;
+						if (xhr.status === 200) {
+							$form.reset();
+							$message._show('success', 'Thank you! We will be in touch.');
+						} else {
+							$message._show('failure', 'Something went wrong. Please try again.');
+						}
+					};
+					xhr.send(formData);
+
 					// Hide message.
 						$message._hide();
 
@@ -156,17 +182,10 @@
 					// but there's enough here to piece together a working AJAX submission call that does.
 						window.setTimeout(function() {
 
-							// Reset form.
-								$form.reset();
-
 							// Enable submit.
 								$submit.disabled = false;
 
-							// Show message.
-								$message._show('success', 'Thank you!');
-								//$message._show('failure', 'Something went wrong. Please try again.');
-
-						}, 750);
+						}, 3000);
 
 				});
 
