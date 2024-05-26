@@ -115,6 +115,8 @@
 					$submit = document.querySelectorAll('#signup-form input[type="submit"]')[0],
 					$message;
 
+				var count = 0, starttime = 0;
+
 			// Bail if addEventListener isn't supported.
 				if (!('addEventListener' in $form))
 					return;
@@ -148,6 +150,12 @@
 					event.stopPropagation();
 					event.preventDefault();
 
+					// check if too much messages in 1 minute
+					if (count >= 5 && new Date().getTime() - starttime < 60000) {
+						$message._show('failure', 'Too much?');
+						return;
+					}
+
 					// check name/email/message values not all empty
 					if ($form.name.value == '' && $form.email.value == '' && $form.message.value == '') {
 						$message._show('failure', 'Huh?');
@@ -166,6 +174,15 @@
 						if (xhr.status === 200) {
 							$form.reset();
 							$message._show('success', 'Thank you! We will be in touch.');
+							count++;
+							if (count == 1) starttime = new Date().getTime();
+							// after 5 good messages, reset count and starttime
+							if (count > 5) {
+								count = 0;
+								starttime = 0;
+							}
+						} else if (xhr.status === 401) {
+							$message._show('failure', 'Not allowed.');
 						} else {
 							$message._show('failure', 'Something went wrong. Please try again.');
 						}
